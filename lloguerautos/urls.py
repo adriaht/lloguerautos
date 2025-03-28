@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from lloguer import views  # Asegúrate de importar las vistas de lloguer
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('lloguer/autos/', views.autos),  # Ruta correcta a la vista 'autos'
 ]
