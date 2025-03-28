@@ -1,5 +1,5 @@
 from django.contrib import admin
-from lloguer.models import Automobil
+from lloguer.models import Automobil,Reserva
 
 
 
@@ -14,4 +14,10 @@ class AutomobilAdmin(admin.ModelAdmin):
     search_fields = ('marca', 'model', 'matricula')  # Campos de búsqueda
 
 
-admin.site.register(Automobil, AutomobilAdmin) 
+class ReservaAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'automobil', 'fecha_inicio', 'fecha_fin', 'creado_en')
+    search_fields = ('usuario__username', 'automobil__marca', 'automobil__model', 'automobil__matricula')
+    list_filter = ('fecha_inicio', 'fecha_fin', 'automobil')
+
+admin.site.register(Automobil, AutomobilAdmin)
+admin.site.register(Reserva, ReservaAdmin)
